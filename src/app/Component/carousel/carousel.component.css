@@ -1,0 +1,30 @@
+.carousel-control-next {
+    right: -10%;
+  }
+  .carousel-control-prev {
+    left: -10%;
+  }
+  
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon {
+    background-color: black;
+  }
+  
+  #myCarousel .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  #myCarousel .carousel-item {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  #myCarousel .carousel-item.active {
+    flex: 0 0 auto;
+  }
+
+  .bg-movies {
+    width: 95%;
+    background-color: rgba(0,0,0,0.3);
+  }

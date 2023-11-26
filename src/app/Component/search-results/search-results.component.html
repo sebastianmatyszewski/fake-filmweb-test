@@ -1,0 +1,10 @@
+<app-search-box (searchEvent)="onSearch($event)"></app-search-box>
+<div class="container-fluid d-flex flex-wrap">
+    <ng-container *ngFor="let movie of searchMovie?.results">
+        <app-movie-card [movie]="movie"></app-movie-card>
+    </ng-container>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-paginator locale="pl-PL" (onPageChange)="onSearch(searchString, $event.page ? $event.page + 1 : 1)" [first]="0" [rows]="20" [totalRecords]="searchMovie? searchMovie.total_results : 0"></p-paginator>
+</div>
