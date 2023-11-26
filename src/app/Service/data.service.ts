@@ -45,8 +45,8 @@ export class DataService {
     return this.http.get<Movie>(this.url + '/search/movie?query=' + searchText + '&api_key=' + environment.api_key  + '&language=pl-PL'  + '&page='+ page)
   }
 
-  getMovie(id: string){
-    return this.http.get<MovieEntity>(this.url + '/movie?=' + searchText + '&api_key=' + environment.api_key  + '&language=pl-PL'  + '&page='+ page)
-  }
+  // getMovie(id: string){
+  //   return this.http.get<MovieEntity>(this.url + '/movie?=' + searchText + '&api_key=' + environment.api_key  + '&language=pl-PL'  + '&page='+ page)
+  // }
 }
 
