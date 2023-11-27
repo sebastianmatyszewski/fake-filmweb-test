@@ -45,8 +45,37 @@ export class DataService {
     return this.http.get<Movie>(this.url + '/search/movie?query=' + searchText + '&api_key=' + environment.api_key  + '&language=pl-PL'  + '&page='+ page)
   }
 
-  // getMovie(id: string){
-  //   return this.http.get<MovieEntity>(this.url + '/movie?=' + searchText + '&api_key=' + environment.api_key  + '&language=pl-PL'  + '&page='+ page)
-  // }
+  getMovie(id: string){
+    return this.http.get<MovieEntity>(this.url + '/movie/' + id + '?api_key=' + environment.api_key  + '&language=pl-PL')
+  }
+
+  modifyData(data: Movie | MovieEntity): Movie | MovieEntity {
+    if ('results' in data && Array.isArray(data.results)) {
+      data.results.forEach(result => {
+        result.backdrop_path = result.backdrop_path
+          ? `https://image.tmdb.org/t/p/original${result.backdrop_path}?api_key=${environment.api_key}`
+          : 'https://www.clipartmax.com/png/middle/137-1370508_cinema-clipart-movie-camera-png.png';
+  
+        result.poster_path = result.poster_path
+          ? `https://image.tmdb.org/t/p/original${result.poster_path}?api_key=${environment.api_key}`
+          : 'https://www.clipartmax.com/png/middle/137-1370508_cinema-clipart-movie-camera-png.png';
+  
+        result.title = result.title || result.name;
+      });
+    } else {
+      const movie = data as MovieEntity;
+      movie.backdrop_path = movie.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}?api_key=${environment.api_key}`
+        : 'https://www.clipartmax.com/png/middle/137-1370508_cinema-clipart-movie-camera-png.png';
+  
+      movie.poster_path = movie.poster_path
+        ? `https://image.tmdb.org/t/p/original${movie.poster_path}?api_key=${environment.api_key}`
+        : 'https://www.clipartmax.com/png/middle/137-1370508_cinema-clipart-movie-camera-png.png';
+  
+      movie.title = movie.title || movie.name;
+    }
+  
+    return data;
+  }
 }
 

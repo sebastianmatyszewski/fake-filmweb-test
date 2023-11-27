@@ -1,5 +1,42 @@
-<!-- <div class="movie">
-    <p>{{movie.name}}</p>
-    <img src="{{movie.backdrop_path}}" alt="{{movie.name}}">
-    <p>{{movie.overview}}</p>
-</div> -->
+<div class="row">
+    <div class="col-md-4">
+      <img src="{{ movie.poster_path }}" class="img-thumbnail" />
+    </div>
+    <div class="col-md-8">
+      <h2 class="text-center text-white">{{ movie.title }}</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Kategorie:</strong> {{ movie.genres[1] }}</li>
+        <li class="list-group-item">
+          <strong>Data wydania:</strong> {{ movie.release_date }}
+        </li>
+        <li class="list-group-item">
+          <strong>Ocena:</strong> {{ movie.vote_average }}
+        </li>
+      </ul>
+      <div class="jumbotron text-white">
+        <h3>Fabuła</h3>
+        {{movie.overview}}
+        <!-- <a
+          [routerLink]="['/movies']"
+          routerLinkActive="router-link-active"
+          class="btn btn-danger"
+          >Go Back To Search</a
+        > -->
+      </div>
+    </div>
+    <div>
+        
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="jumbotron">
+      <h3>Fabuła</h3>
+      {{movie.overview}}
+      <a
+        [routerLink]="['/movies']"
+        routerLinkActive="router-link-active"
+        class="btn btn-danger"
+        >Go Back To Search</a
+      >
+    </div>
+  </div> -->

@@ -1,8 +1,4 @@
 <div class="container-fluid p-0 mx-5 text-white d-flex flex-column gap-3">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <p class="m-0">Wyszukaj dowolny film</p>
-        <app-search-box (searchEvent)="onSearch($event)"></app-search-box>
-    </div>
     <app-carousel (spellTekst)="spellTekst($event)" *ngIf="popularMovies && popularMovies.results; else skeleton" [movies]="popularMovies.results" carouselTitle="Popularne filmy"></app-carousel>
     <app-carousel *ngIf="nowPlayingMovies && nowPlayingMovies.results" [movies]="nowPlayingMovies.results" carouselTitle="Najczęściej oglądane"></app-carousel>
     <app-carousel *ngIf="topRatedMovies && topRatedMovies.results" [movies]="topRatedMovies.results" carouselTitle="Najlepiej oceniane"></app-carousel>

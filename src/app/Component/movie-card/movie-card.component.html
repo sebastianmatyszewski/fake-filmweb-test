@@ -6,7 +6,7 @@
                 <h5 class="card-title">{{ movie.title }}</h5>
                 <p class="card-text">{{ movie.overview | truncate : 100 : true }}</p>
             </div>
-          <a href="#" class="btn btn-primary">Przejdz do szczegółów</a>
+          <a class="btn btn-primary" routerLink="/movie/{{movie.id}}">Przejdz do szczegółów</a>
         </div>
     </div>
 </div>

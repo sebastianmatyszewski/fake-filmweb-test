@@ -22,12 +22,12 @@ export class DashboardComponent implements OnInit, OnDestroy{
   subscriptions: Subscription[] = [];
   globalSearch: string = "";
   
-  constructor(private dataServie: DataService, private router: Router){}
+  constructor(private dataServie: DataService){}
 
   getPopularMovies(){
     this.subscriptions.push(
       this.dataServie.getPopularMovie().subscribe( res => {
-        this.popularMovies = this.modifyData(res);
+        this.popularMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.popularMovies)
       }, err => {
         console.log(err)
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   getNowPlayingMovies(){
     this.subscriptions.push(
       this.dataServie.getNowPlayingMovie().subscribe( res => {
-        this.nowPlayingMovies = this.modifyData(res);
+        this.nowPlayingMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.nowPlayingMovies)
       }, err => {
         console.log(err)
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   getTopRatedMovies(){
     this.subscriptions.push(
       this.dataServie.getTopRatedMovie().subscribe( res => {
-        this.topRatedMovies = this.modifyData(res);
+        this.topRatedMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.topRatedMovies)
       }, err => {
         console.log(err)
@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   getUpcomingMovies(){
     this.subscriptions.push(
       this.dataServie.getUpcomingMovie().subscribe( res => {
-        this.upcomingMovies = this.modifyData(res);
+        this.upcomingMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.upcomingMovies)
       }, err => {
         console.log(err)
@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   getTrendingMovies(){
     this.subscriptions.push(
       this.dataServie.getTrendingMovie().subscribe( res => {
-        this.trendingMovies = this.modifyData(res);
+        this.trendingMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.trendingMovies)
       }, err => {
         console.log(err)
@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   getOriginalsMovies(){
     this.subscriptions.push(
       this.dataServie.getOriginalsMovie().subscribe( res => {
-        this.originalsMovies = this.modifyData(res);
+        this.originalsMovies = this.dataServie.modifyData(res) as Movie;
         console.log(this.originalsMovies)
       }, err => {
         console.log(err)
@@ -99,18 +99,6 @@ export class DashboardComponent implements OnInit, OnDestroy{
     this.getTrendingMovies();
     this.getOriginalsMovies();
   }
-  modifyData(movies: Movie): Movie{
-    if(movies.results) {
-      movies.results.forEach(element => {
-        element.backdrop_path = 'https://image.tmdb.org/t/p/original' + element.backdrop_path + '?api_key=' + environment.api_key;
-        if(!element.title){
-          element.title = element?.name;
-        }
-      });
-    }
-
-    return movies;
-  }
 
   spellTekst(tekst: string){
     console.log(tekst)
@@ -119,12 +107,5 @@ export class DashboardComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
-
-  onSearch(query: string) {
-    if (query !== '') {
-      this.router.navigate(['/search/' + query]);
-    }
-  }
-
 
 }

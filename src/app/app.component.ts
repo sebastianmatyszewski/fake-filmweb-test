@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouteReuseStrategy, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'fake-filmweb';
-  
 
+  constructor(private router: Router){
+  }
+  
+  onSearch(query: string) {
+    console.log("ddd", query)
+    if (query !== '') {
+      this.router.navigate(['/search/' + query]);
+    }
+  }
   
 }

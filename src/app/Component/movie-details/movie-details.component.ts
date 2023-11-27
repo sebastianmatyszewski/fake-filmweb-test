@@ -9,14 +9,21 @@ import { DataService } from 'src/app/Service/data.service';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit{
+  movieId: string | null = null;
   movie!: MovieEntity;
   constructor(private dataService: DataService, private router:ActivatedRoute){
-
+    this.movieId = this.router.snapshot.paramMap.get("id");
   }
   ngOnInit(): void {
+    this.loadMovie();
   }
 
   loadMovie(){
-    
+    if(this.movieId){
+      this.dataService.getMovie(this.movieId).subscribe(movie => {
+        this.movie = this.dataService.modifyData(movie) as MovieEntity;
+        console.log(movie)
+      })
+    }
   }
 }

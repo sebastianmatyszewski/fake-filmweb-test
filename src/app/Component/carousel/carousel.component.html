@@ -1,6 +1,6 @@
 <div class="bg-movies pt-3">
     <h2 class="ms-5">{{carouselTitle}}</h2>
-    <p-carousel [value]="movies" [numVisible]="7" [numScroll]="7" [circular]="true" [responsiveOptions]="responsiveOptions" autoPlayInterval="3000">
+    <p-carousel [value]="movies" [numVisible]="5" [numScroll]="5" [circular]="true" [responsiveOptions]="responsiveOptions" autoPlayInterval="3000">
         <ng-template let-movie pTemplate="item">
             <app-movie-card [movie]="movie"></app-movie-card>
         </ng-template>
