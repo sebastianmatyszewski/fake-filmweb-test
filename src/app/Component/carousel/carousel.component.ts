@@ -36,7 +36,7 @@ export class CarouselComponent {
           numScroll: 2
       },
       {
-          breakpoint: '560px',
+          breakpoint: '360px',
           numVisible: 1,
           numScroll: 1
       }
